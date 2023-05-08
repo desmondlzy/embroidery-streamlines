@@ -1,4 +1,4 @@
-![teaser image, mashup of three photos of  embroidery patterns designed by our algorithm](./images/mashup.jpg)
+![teaser image, a mash-up of three photos of  embroidery patterns designed by our algorithm](./images/mashup.jpg)
 
 # Streamlines for Embroidery
 
@@ -14,20 +14,22 @@ conda env create -f environment.yml
 ```
 
 
-## Run the script
+## Run the scripts
+
+A few interactive python scripts reside in the `examples` folder. You can run them from command line or interactively in [vscode](https://code.visualstudio.com/docs/python/jupyter-support-py) or other IDEs, or export them to jupyter notebooks
 
 ### `examples/run_multiple_patches.py` 
 Run the pipeline on the density and direction fields extracted from each segment of an image. Generate a preview of the embroidery pattern, and `.emb` files that can be used on the Bernina B590 machine.
 
 ### `examples/run_interactive_regularization.py`
-Demo of the interactive regularization. An example of a horizontal direction field and a linearly increasing density field is used here. A matplotlib popup will appear for the interactive demo.
+Demo of the interactive regularization. An example of a horizontal direction field and a linearly increasing density field is used here. A pyplot popup will appear for the interactive demo.
 
 ### `examples/run_analytical_field.py`
 Run the pipeline on some analytical fields, please check the source code to choose from the fields available, or make your own fields.
 
 ## Cite Us!
 
-Please consider cite us if you find our work helpful for your project.
+Please consider citing us if you find our work helpful for your project.
 
 ```
 @article{zhenyuan2023embroidery,
