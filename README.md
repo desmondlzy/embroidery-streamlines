@@ -21,11 +21,15 @@ A few interactive python scripts reside in the `examples` folder. You can run th
 ### `examples/run_multiple_patches.py` 
 Run the pipeline on the density and direction fields extracted from each segment of an image. Generate a preview of the embroidery pattern, and `.emb` files that can be used on the Bernina B590 machine.
 
+![feather preview](./images/feather.jpg)
+
 ### `examples/run_interactive_regularization.py`
 Demo of the interactive regularization. An example of a horizontal direction field and a linearly increasing density field is used here. A pyplot popup will appear for the interactive demo.
 
 ### `examples/run_analytical_field.py`
 Run the pipeline on some analytical fields, please check the source code to choose from the fields available, or make your own fields.
+
+![interactive demo]
 
 ## Cite Us!
 
