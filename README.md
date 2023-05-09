@@ -29,7 +29,7 @@ Demo of the interactive regularization. An example of a horizontal direction fie
 ### `examples/run_analytical_field.py`
 Run the pipeline on some analytical fields, please check the source code to choose from the fields available, or make your own fields.
 
-![interactive demo]
+![interactive demo gif](./images/interative.gif)
 
 ## Cite Us!
 
