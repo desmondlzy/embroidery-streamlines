@@ -123,6 +123,7 @@ def main_pipeline(
 		if len(l) >= 2]  # throw away lines that are too short (single vertex), otherwise error in spring_energy_matrices
 
 	if plot_figure and plot_save_folder is not None:
+		plt.title("Before cutting")
 		plt.plot(boundary[:, 0], boundary[:, 1], color="black")
 		plt.scatter(positive_interior_sources[:, 0], positive_interior_sources[:, 1], color=primary_color)
 		plt.scatter(negative_interior_sources[:, 0], negative_interior_sources[:, 1], color=secondary_color)
@@ -153,6 +154,7 @@ def main_pipeline(
 
 	print(f"{len(cut_streamlines) = } traced")
 	if plot_figure and plot_save_folder is not None:
+		plt.title("Sources, sinks and streamlines")
 		plt.plot(boundary[:, 0], boundary[:, 1], color="black")
 		plt.scatter(positive_interior_sources[:, 0], positive_interior_sources[:, 1], color=primary_color)
 		plt.scatter(negative_interior_sources[:, 0], negative_interior_sources[:, 1], color=secondary_color)

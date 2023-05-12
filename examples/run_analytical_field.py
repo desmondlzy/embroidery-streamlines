@@ -58,7 +58,7 @@ def constant_density_constant_direction(xx, yy):
 	return "const-den-const-dir", density_grid, direction_grid
 
 #%%
-function = constant_density_constant_direction  # change the following line for different analytical fields shown above
+function = vertical_linear_density_constant_direction  # change the following line for different analytical fields shown above
 
 relative_line_width = 0.010 # this is global density multiplier -- density = 1 / relative_line_width
 task_name, density_grid, direction_grid = function(xx, yy)
@@ -73,8 +73,8 @@ density_image[:, :, 3] = 1
 
 plt.imshow(density_image, cmap=common.helpers.primary_colormap())
 plt.axis("scaled")
-plotter.savefig_tight(f"./output/analytical-{task_name}/density.svg")
-plt.show()
+# plotter.savefig_tight(f"./output/analytical-{task_name}/density.svg")
+# plt.show()
 plt.clf()
 
 #%%
@@ -86,8 +86,8 @@ plt.quiver(qxx, qyy, np.cos(_dir), np.sin(_dir),
 plt.axis("scaled")
 plt.xlim(0, 1)
 plt.ylim(0, 1)
-plotter.savefig_tight(f"./output/analytical-{task_name}/directionality.svg")
-plt.show()
+# plotter.savefig_tight(f"./output/analytical-{task_name}/directionality.svg")
+# plt.show()
 plt.clf()
 
 
@@ -104,8 +104,8 @@ line = main_pipeline(
 	use_boundary_for_smoothing=True,
 	streamline_step=5000,
 	streamline_step_size=0.0008,
-	plot_save_folder=f"output/analytical-{task_name}",
-	# plot_save_folder="show",
+	# plot_save_folder=f"output/analytical-{task_name}",
+	plot_save_folder="show",
 )
 
 

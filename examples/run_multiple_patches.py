@@ -15,7 +15,6 @@ import matplotlib
 from matplotlib import pyplot as plt
 from matplotlib import patches
 
-from scipy import interpolate, signal, spatial
 from tqdm import tqdm
 
 import numpy as np
