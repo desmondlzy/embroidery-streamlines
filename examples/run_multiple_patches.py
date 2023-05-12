@@ -36,13 +36,11 @@ if (ipython_instance := get_ipython()) is not None:
 	ipython_instance.run_line_magic("autoreload", "2")
 
 # %%
-# task_name = f"aurora-illu"
-task_name = f"landscape"
+task_name = f"feather"
 image_fn = f"data/{task_name}.jpg"
 json_fn = f"data/{task_name}.json"
-# image = np.flipud(img_as_float(plt.imread("data/pink-petal.jpg")))
+
 image = img_as_float(plt.imread(image_fn))[:, :, :3]
-# image = restoration.denoise_bilateral(image, sigma_color=0.2, sigma_spatial=7, channel_axis=-1)
 image = filters.gaussian(image, sigma=1)
 plt.imshow(image)
 
@@ -147,7 +145,7 @@ for i, (label_name, label_ctx) in enumerate(context_map.items()):
 	label_ctx.line_bg = bgl
 	label_ctx.line_fg = fgl
 
-print("done")
+print("pattern generation done!")
 
 #%% Color projection to our palette, output preview 
 xmin, xmax = plt.xlim()
@@ -159,6 +157,7 @@ color_names = []
 color_hexes = []
 
 # project to the nearest color
+print("picking colors...")
 for label_name, ctx in tqdm(sorted([(k, v) for k, v in context_map.items()], key=lambda p: p[0])):
 	# print(label_name)
 	color_bg = np.clip(ctx.color_bg, 0, 1)
@@ -196,10 +195,6 @@ plt.savefig(f"output/{task_name}/preview.png", bbox_inches="tight", pad_inches=0
 plt.savefig(f"output/{task_name}/preview.svg", bbox_inches="tight", pad_inches=0)
 plt.show()
 
-with open(f"output/{task_name}/colorplan.txt", "w") as fp:
-	for name in color_names:
-		print(name, file=fp)
-
 #%%
 from embroidery.utils.path import chessboard, subsample
 from embroidery.utils.io import write_bundle, EmbPattern
@@ -222,48 +217,3 @@ for label_name, ctx in sorted([(k, v) for k, v in context_map.items()], key=lamb
 print(summary.summarize_pattern(pattern))
 write_bundle(pattern, f"output/stitch", f"{task_name}-stitch")
 write_bundle(pattern, f"output/{task_name}", f"{task_name}")
-
-# %%
-import matplotlib
-from matplotlib import patches
-
-ax = plt.gca()
-ax.add_patch(patches.Rectangle((-1, 0), 1, 1, color=(1, 1, 1)))
-props = {"fontsize": 10, "rotation": 270, "ha": "left", "rotation_mode": "anchor"}
-plt.title(f"{task_name}")
-plt.text(-1.5, 1.5, "original")
-plt.text(-1.5, 0.5, "projected")
-plt.text(-1, -0.3, f"0", props)
-plt.text(-1, -0.6, f"white", props)
-for i, (label_name, ctx) in enumerate(sorted([(k, v) for k, v in context_map.items()], key=lambda p: p[0])):
-	ax.add_patch(patches.Rectangle((i * 2, 1), 1, 1, color=ctx.color_bg))
-	ax.add_patch(patches.Rectangle((i * 2 + 1, 1), 1, 1, color=ctx.color_fg))
-	ax.add_patch(patches.Rectangle((i * 2, 0), 1, 1, color=ctx.projected_color_bg))
-	ax.add_patch(patches.Rectangle((i * 2 + 1, 0), 1, 1, color=ctx.projected_color_fg))
-	plt.text(i * 2, -0.3, f"{i * 2 + 1}", props)
-	# plt.text(i * 2, -0.6, f"{matplotlib.colors.to_hex(ctx.color_bg).lstrip('#')}", fontsize=10)
-	plt.text(i * 2, -0.7, ctx.colorname_bg, props)
-	plt.text(i * 2 + 1, -0.3, f"{i * 2 + 1 + 1}", props)
-	# plt.text(i * 2 + 1, -0.6, f"{matplotlib.colors.to_hex(ctx.color_fg).lstrip('#')}", fontsize=10)
-	plt.text(i * 2 + 1, -0.7, ctx.colorname_fg, props)
- 
-plt.xlim(-1, i * 2 + 2)
-plt.ylim(0, 1)
-plt.axis("scaled")
-plt.axis("off")
-plt.savefig(f"output/stitches/{task_name}-colorbars.png")
-plt.show()
-	
-#%%
-ds = gamut.get_default_gamuts()
-col_count = 10
-ax = plt.gca()
-for i, (name, hexcode) in enumerate(ds):
-	r, c = divmod(i, col_count)
-	ax.add_patch(patches.Rectangle((r, c), 1, 1, color=f"#{hexcode}"))
-
-plt.xlim(0, len(ds) // col_count + 2)
-plt.ylim(0, len(ds) // col_count + 2)
-plt.axis("scaled")
-plt.axis("off")
-plt.show()
