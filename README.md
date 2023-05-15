@@ -4,7 +4,9 @@
 
 Let the streamlines flow from your favorite photos to embroidery patterns you can sew on your hoodies using an automatic embroidery machine!
 
-Learn more about it at our [project page](https://desmondlzy.me/publications/embroidery/)
+Learn more about it at our [project page](https://desmondlzy.me/publications/embroidery/).
+
+_Directionality-Aware Design of Embroidery Patterns_. Computer Graphics Forum (Eurographics 2023); Liu Zhenyuan, Michal Piovarči, Christian Hafner, Raphaël Charrondière, Bernd Bickel
 
 ## Notice!
 
