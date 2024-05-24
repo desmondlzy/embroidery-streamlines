@@ -40,12 +40,12 @@ if (ipython_instance := get_ipython()) is not None:
 
 # %%
 task_name = f"feather"
-# image_fn = f"data/{task_name}.jpg"
-# json_fn = f"data/{task_name}.json"
+image_fn = f"data/{task_name}.jpg"
+json_fn = f"data/{task_name}.json"
 
-# image = img_as_float(plt.imread(image_fn))[:, :, :3]
-# image = filters.gaussian(image, sigma=1)
-# plt.imshow(image)
+image = img_as_float(plt.imread(image_fn))[:, :, :3]
+image = filters.gaussian(image, sigma=1)
+plt.imshow(image)
 
 # make output dir, otherwise boom
 os.makedirs(f"output/{task_name}", exist_ok=True)
@@ -65,29 +65,29 @@ def recover_colors(grid, color_left, color_right):
 
 
 #%%
-# with open(json_fn) as fp:
-# 	label_json = json.load(fp)
-# 	print([s["label"] for s in label_json["shapes"]])
+with open(json_fn) as fp:
+	label_json = json.load(fp)
+	print([s["label"] for s in label_json["shapes"]])
 
 target_physical_size_mm = 99
 relative_line_width = physical_line_width_mm / target_physical_size_mm
 
-# annotations = np.vstack(
-# 	[np.array(shape["points"]) for shape in label_json["shapes"] if shape["shape_type"] == "polygon"]
-# 	)
-# bbox_min, bbox_max = annotations.min(axis=0), annotations.max(axis=0)
-# longest_edge_px = max(bbox_max[0] - bbox_min[0], bbox_max[1] - bbox_min[1])
+annotations = np.vstack(
+	[np.array(shape["points"]) for shape in label_json["shapes"] if shape["shape_type"] == "polygon"]
+	)
+bbox_min, bbox_max = annotations.min(axis=0), annotations.max(axis=0)
+longest_edge_px = max(bbox_max[0] - bbox_min[0], bbox_max[1] - bbox_min[1])
 
-# print(f"{bbox_min = }, {bbox_max = }")
-# print(f"{(bbox_max - bbox_min) / longest_edge_px * target_physical_size_mm}mm")
+print(f"{bbox_min = }, {bbox_max = }")
+print(f"{(bbox_max - bbox_min) / longest_edge_px * target_physical_size_mm}mm")
 
-# @numba.njit
-# def _image_space_to_normal_space(xk):
-# 	return (xk - bbox_min) / longest_edge_px
+@numba.njit
+def _image_space_to_normal_space(xk):
+	return (xk - bbox_min) / longest_edge_px
 
-# @numba.njit
-# def _normal_space_to_image_space(xk):
-# 	return (xk * longest_edge_px) + bbox_min
+@numba.njit
+def _normal_space_to_image_space(xk):
+	return (xk * longest_edge_px) + bbox_min
 
 #%%
 sys.modules["parse_example"] = common.parse_example
