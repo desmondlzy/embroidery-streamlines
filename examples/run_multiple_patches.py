@@ -5,11 +5,14 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 #%%
-import sys, os
+import sys, os; sys.path.append("..")
+
+import common.parse_example; 
+
 import json
 import pickle
+import examples.common.parse_example
 
-sys.path.append("..")
 
 import matplotlib
 from matplotlib import pyplot as plt
@@ -37,12 +40,12 @@ if (ipython_instance := get_ipython()) is not None:
 
 # %%
 task_name = f"feather"
-image_fn = f"data/{task_name}.jpg"
-json_fn = f"data/{task_name}.json"
+# image_fn = f"data/{task_name}.jpg"
+# json_fn = f"data/{task_name}.json"
 
-image = img_as_float(plt.imread(image_fn))[:, :, :3]
-image = filters.gaussian(image, sigma=1)
-plt.imshow(image)
+# image = img_as_float(plt.imread(image_fn))[:, :, :3]
+# image = filters.gaussian(image, sigma=1)
+# plt.imshow(image)
 
 # make output dir, otherwise boom
 os.makedirs(f"output/{task_name}", exist_ok=True)
@@ -62,38 +65,38 @@ def recover_colors(grid, color_left, color_right):
 
 
 #%%
-with open(json_fn) as fp:
-	label_json = json.load(fp)
-	print([s["label"] for s in label_json["shapes"]])
+# with open(json_fn) as fp:
+# 	label_json = json.load(fp)
+# 	print([s["label"] for s in label_json["shapes"]])
 
 target_physical_size_mm = 99
 relative_line_width = physical_line_width_mm / target_physical_size_mm
 
-annotations = np.vstack(
-	[np.array(shape["points"]) for shape in label_json["shapes"] if shape["shape_type"] == "polygon"]
-	)
-bbox_min, bbox_max = annotations.min(axis=0), annotations.max(axis=0)
-longest_edge_px = max(bbox_max[0] - bbox_min[0], bbox_max[1] - bbox_min[1])
+# annotations = np.vstack(
+# 	[np.array(shape["points"]) for shape in label_json["shapes"] if shape["shape_type"] == "polygon"]
+# 	)
+# bbox_min, bbox_max = annotations.min(axis=0), annotations.max(axis=0)
+# longest_edge_px = max(bbox_max[0] - bbox_min[0], bbox_max[1] - bbox_min[1])
 
-print(f"{bbox_min = }, {bbox_max = }")
-print(f"{(bbox_max - bbox_min) / longest_edge_px * target_physical_size_mm}mm")
+# print(f"{bbox_min = }, {bbox_max = }")
+# print(f"{(bbox_max - bbox_min) / longest_edge_px * target_physical_size_mm}mm")
 
-@numba.njit
-def _image_space_to_normal_space(xk):
-	return (xk - bbox_min) / longest_edge_px
+# @numba.njit
+# def _image_space_to_normal_space(xk):
+# 	return (xk - bbox_min) / longest_edge_px
 
-@numba.njit
-def _normal_space_to_image_space(xk):
-	return (xk * longest_edge_px) + bbox_min
+# @numba.njit
+# def _normal_space_to_image_space(xk):
+# 	return (xk * longest_edge_px) + bbox_min
 
 #%%
-from parse_example import parse_example_by_name
+sys.modules["parse_example"] = common.parse_example
 
 if Path(f"data/{task_name}.pickle").exists():
 	with open(f"data/{task_name}.pickle", "rb") as fp:
 		context_map = pickle.load(fp)
 else:
-	context_map = parse_example_by_name(task_name, image, label_json)
+	context_map = common.example_context.parse_example_by_name(task_name, image, label_json)
 	with open(f"data/{task_name}.pickle", "wb") as fp:
 		pickle.dump(context_map, fp)
 
