@@ -53,7 +53,9 @@ Run the pipeline on some analytical fields, please check the source code to choo
 
 ## Cite Us, and Reach Out!
 
-Please consider citing us if you find our work helpful for your project.
+Knowing our work being helpful to others means a lot to us! I'd be happy about knowing how our work creates some values for you. Drop me a [note](mailto:desmondzyliu@gmail.com) anytime.
+
+Please consider citing us if you use our project.
 
 ```
 @article{zhenyuan2023embroidery,
