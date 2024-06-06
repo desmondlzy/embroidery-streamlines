@@ -15,7 +15,7 @@ The code is a **research prototype**. It's not well-documented or optimized, and
 The user interface for segmentation/color extraction which prepare the data for our algorithm on an user-provided image is not included.
 However, you can use the data in the repo to reproduce our examples as described in the following sections.
 
-Please drop [me](https://desmondlzy.me/) a note or start an [issue](https://github.com/desmondlzy/embroidery-streamlines/issues) if you have questions.
+Though, I'll be happy to help you with the problems you have: start an [issue](https://github.com/desmondlzy/embroidery-streamlines/issues) if you have questions, drop [me](mailto:desmondzyliu@gmail.com) an email if no response for too long.
 
 ## Environment Setup
 
@@ -25,6 +25,13 @@ Installation in a virtual environment via `conda` is recommended. The package li
 conda env create -f environment.yml
 ```
 
+On Apple Silicon machines, `pip install triangle` or `pip install triangle==20220202` won't install you the correct version because the wheel for Apple Silicon appears not indexed by PyPi. A workaround is to pip [install the specific version from github repo](https://stackoverflow.com/questions/13685920/install-specific-git-commit-with-pip).
+
+```bash
+# On Apple Silicon machines, do this 
+pip uninstall triangle
+pip install git+https://github.com/drufat/triangle.git@v20220202
+```
 
 ## Run the scripts
 
@@ -44,7 +51,7 @@ Demo of the interactive regularization. An example of a horizontal direction fie
 Run the pipeline on some analytical fields, please check the source code to choose from the fields available, or define your own fields.
 
 
-## Cite Us!
+## Cite Us, and Reach Out!
 
 Please consider citing us if you find our work helpful for your project.
 
