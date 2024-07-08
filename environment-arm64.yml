@@ -6,6 +6,7 @@ dependencies:
   - colorama=0.4.6
   - colormath=3.0.0
   - imageio=2
+  - ipykernel
   - matplotlib
   - numba
   - numpy=1
@@ -19,4 +20,4 @@ dependencies:
   - pip:
       - pyembroidery==1.4.36
       - svgelements
-      - triangle==20220202
+      - "--editable=git+https://github.com/drufat/triangle.git@v20220202#egg=triangle"

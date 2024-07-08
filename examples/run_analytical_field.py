@@ -74,7 +74,7 @@ density_image[:, :, 3] = 1
 plt.imshow(density_image, cmap=common.helpers.primary_colormap())
 plt.axis("scaled")
 # plotter.savefig_tight(f"./output/analytical-{task_name}/density.svg")
-# plt.show()
+plt.show()
 plt.clf()
 
 #%%
@@ -108,5 +108,3 @@ line = main_pipeline(
 	plot_save_folder="show",
 )
 
-
-# %%
