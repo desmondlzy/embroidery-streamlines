@@ -12,10 +12,10 @@ _Directionality-Aware Design of Embroidery Patterns_. Computer Graphics Forum (E
 
 The code is a **research prototype**. It's not well-documented or optimized, and is nowhere near an end-user product.
 
-The user interface for segmentation/color extraction which prepare the data for our algorithm on an user-provided image is not included.
-However, you can use the data in the repo to reproduce our examples as described in the following sections.
+The user interface for segmentation/color extraction which prepares the data for our algorithm on a user-provided image is not included.
+Though, you can use the data in the repo to reproduce our examples as described in the following sections.
 
-Though, I'll be happy to help you with the problems you have: start an [issue](https://github.com/desmondlzy/embroidery-streamlines/issues) if you have questions, drop [me](mailto:desmondzyliu@gmail.com) an email if no response for too long.
+I'll be happy to help you with the problems you have: start an [issue](https://github.com/desmondlzy/embroidery-streamlines/issues) if you have questions, drop [me](mailto:desmondzyliu@gmail.com) an email if no response for too long...
 
 ## Environment Setup
 
@@ -62,7 +62,7 @@ Run the pipeline on some analytical fields, please check the source code to choo
 
 ## Cite Us, and Reach Out!
 
-Knowing our work being helpful to others means a lot to us! I'd be happy about knowing how our work creates some values for you. Drop me a [note](mailto:desmondzyliu@gmail.com) anytime.
+Knowing our work being helpful to others means a lot to us! It will make my day to know how our work creates some value for you! Drop me a [note](mailto:desmondzyliu@gmail.com) anytime.
 
 Please consider citing us if you use our project.
 
