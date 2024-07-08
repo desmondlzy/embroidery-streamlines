@@ -20,7 +20,7 @@ Though, I'll be happy to help you with the problems you have: start an [issue](h
 ## Environment Setup
 
 The code is tested on Windows and macOS (M1).
-Installation in a virtual environment via `conda` is recommended. The package list is provided at `environment.yml` or `environment-arm64.yml` for macOS or other arm64 system.
+Installation in a virtual environment via `conda` is recommended. The package list is provided at `environment.yml` or `environment-arm64.yml` for macOS or other arm64 systems.
 
 ```
 conda env create -f environment.yml
@@ -34,7 +34,7 @@ conda env create -f environment-arm64.yml
 
 Reason: on macOS, `pip install triangle` or `pip install triangle==20220202` won't install you the correct version because the wheel for macOS appears not indexed by PyPi. 
 A workaround is to pip [install the specific version from github repo](https://stackoverflow.com/questions/13685920/install-specific-git-commit-with-pip). 
-I'm only able to compile with python version up to 3.10.
+I'm only able to compile `git+https://github.com/drufat/triangle.git@v20220202` with python version up to 3.10 though.
 
 <!-- ```bash
 # On Apple Silicon machines, do this 
