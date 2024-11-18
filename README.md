@@ -59,6 +59,15 @@ Demo of the interactive regularization. An example of a horizontal direction fie
 ### `examples/run_analytical_field.py`
 Run the pipeline on some analytical fields, please check the source code to choose from the fields available, or define your own fields.
 
+## Test with your own images
+
+This can be done via the script `examples/run_multiple_patches.py`. 
+The script parses a json containing annotations for segments and directions and feeds it into our algorithm. You might wanna start looking at `examples/data/feather.json` for an example. 
+There're three parts of information -- 1) boundary of each region for which you wanna generate an embroidery pattern (labeled `region-x` in the json file), 2) the user prescribed directions for each region (labeled `direction-x` for `region-x`), and 3) the image file which is used to extract density fields. 
+
+We generated this json using an annotation tool called [Labelme](https://github.com/wkentaro/labelme). 
+You need to follow the said naming conventions for labels of the regions/direction annotations in Labelme to generate a json parsable by our scripts. 
+
 
 ## Cite Us, and Reach Out!
 
