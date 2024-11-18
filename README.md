@@ -44,7 +44,7 @@ pip install git+https://github.com/drufat/triangle.git@v20220202
 
 ## Run the scripts
 
-A few interactive python scripts reside in the `examples` folder. You can run them from command line or interactively in [vscode](https://code.visualstudio.com/docs/python/jupyter-support-py) or other IDEs, or export them to jupyter notebooks.
+A few interactive python scripts reside in the `examples` folder. You can run them from command line or [interactively in vscode](https://code.visualstudio.com/docs/python/jupyter-support-py) or other IDEs, or export them to jupyter notebooks.
 
 ### `examples/run_multiple_patches.py` 
 Run the pipeline on the density and direction fields extracted from each segment of an image. Generate a preview of the embroidery pattern, and `.emb` files that can be used on the Bernina B590 machine. 
